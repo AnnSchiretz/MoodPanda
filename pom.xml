@@ -49,7 +49,7 @@
                     <reportVersion>2.4.1</reportVersion>
                     <reportDirectory>target/site</reportDirectory>
                 </configuration>
-                <version>2.10.0</version>
+                <version>2.9</version>
             </plugin>
         </plugins>
     </build>
@@ -77,7 +77,7 @@
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
-            <version>2.12.1</version>
+            <version>2.13.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
