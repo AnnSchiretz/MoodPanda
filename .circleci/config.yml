@@ -37,6 +37,7 @@ jobs:
           when: always
       - store_artifacts:
           path: target/site/allure-maven-plugin/
+          when: always
 workflows:
   version: 2
   commit:
