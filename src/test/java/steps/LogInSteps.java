@@ -1,8 +1,11 @@
 package steps;
 
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import pages.LogInPage;
+import pages.MyUpdatesPage;
 
+@Log4j2
 public class LogInSteps  {
     private LogInPage logInPage;
     public LogInSteps(){
@@ -12,6 +15,19 @@ public class LogInSteps  {
     public LogInSteps login(String email,String password){
         logInPage.openPage()
                 .logIn(email, password);
+        return this;
+    }
+    @Step("")
+    public LogInSteps logout(){
+        MyUpdatesPage page = new MyUpdatesPage();
+        page.logout();
+        logInPage.openPage();
+        return this;
+    }
+    @Step("")
+    public LogInSteps loginWithIncorrectEmail(String email,String password){
+        logInPage.openPage()
+                .sendIncorrectEmail(email,password);
         return this;
     }
 }
