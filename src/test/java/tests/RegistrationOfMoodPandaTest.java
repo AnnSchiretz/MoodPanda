@@ -7,8 +7,8 @@ import tests.base.BaseTest;
 public class RegistrationOfMoodPandaTest extends BaseTest {
     @Test
     public void registration(){
-        String userName = "feufhe44";
-        String surname = "f";
+        String userName = "feufhe";
+        String surname = "Y";
         String yearOfBirthday = "1990";
         String newEmail = randomEmail() + "@hdu.com";
         String newPassword = "1234567890";

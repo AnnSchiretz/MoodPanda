@@ -8,6 +8,8 @@ import steps.EditProfileSteps;
 
 import static com.codeborne.selenide.Selenide.*;
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
+
 @Log4j2
 public class EditProfilePage extends BasePage {
     private static final String URL_EDIT_MODAL = "https://moodpanda.com/Account/";
@@ -101,7 +103,7 @@ public class EditProfilePage extends BasePage {
         assertEquals($(EDIT_FIRST_NAME).getValue(), profile.getUserName());
         log.error("Не сошлись данные имени пользователя, что после обновления и того, что вводил юзер");
         screenshot("validationFirstNameInProfilePage");
-        assertEquals($(EDIT_SURNAME).getValue(), profile.getSurname());
+        assertEquals($(EDIT_SURNAME).getValue(), profile.getSurname().toLowerCase());
         screenshot("validationSurnameInProfilePage");
         log.error("Не сошлись фамилии пользователя, что после обновления и того, что вводил юзер");
         assertEquals($(EDIT_YEAR_OF_BIRTHDAY).getValue(), profile.getYearOfBirthday());
