@@ -8,7 +8,7 @@ public class EditTimezoneSettingsTest extends BaseTest {
     @Test
     public void editTimezoneSettings(){
         String userName = "feufhe";
-        String surname = "f";
+        String surname = "F";
         String yearOfBirthday = "1990";
         String gender = "Bigender";
         String timezone = "(GMT) Western Europe Time, London, Lisbon, Casablanca";
