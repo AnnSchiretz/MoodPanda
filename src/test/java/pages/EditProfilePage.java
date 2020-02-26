@@ -103,7 +103,7 @@ public class EditProfilePage extends BasePage {
         assertEquals($(EDIT_FIRST_NAME).getValue(), profile.getUserName());
         log.error("Не сошлись данные имени пользователя, что после обновления и того, что вводил юзер");
         screenshot("validationFirstNameInProfilePage");
-        assertEquals($(EDIT_SURNAME).getValue(), profile.getSurname().toLowerCase());
+        assertEquals($(EDIT_SURNAME).getValue(), profile.getSurname());
         screenshot("validationSurnameInProfilePage");
         log.error("Не сошлись фамилии пользователя, что после обновления и того, что вводил юзер");
         assertEquals($(EDIT_YEAR_OF_BIRTHDAY).getValue(), profile.getYearOfBirthday());
