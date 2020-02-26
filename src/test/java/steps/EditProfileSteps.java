@@ -47,13 +47,15 @@ public class EditProfileSteps {
                 .validationPersonalInfoAfterUpdate(profile);
         return this;
     }
-    @Step("")
+
+    @Step("validation email after update")
     public EditProfileSteps validationEmail(Profile profile){
         editProfile.openPage()
                 .validationForEmail(profile);
         return this;
     }
-    @Step("")
+
+    @Step("validation timezone and country in settings")
     public EditProfileSteps validationTimezoneAndCountry(Profile profile){
         editProfile.openPage()
                 .validationTimezone(profile);

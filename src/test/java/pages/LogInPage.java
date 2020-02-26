@@ -36,6 +36,7 @@ public class LogInPage extends BasePage {
         $(PASSWORD_INPUT).sendKeys(password);
         $(LOGIN_BUTTON).click();
         $(MESSAGE_ERROR).shouldBe(Condition.visible);
+        screenshot("errorMessage");
         return this;
     }
 

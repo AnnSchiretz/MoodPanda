@@ -21,22 +21,27 @@ public class AvatarPage extends BasePage {
     public AvatarPage openPage() {
         open(URL_AVATAR);
         isPageOpen();
+        screenshot("avatarOpenPage");
         return this;
     }
 
     @Override
     void isPageOpen() {
         $(TOOLBAR).shouldBe(Condition.visible);
-        //log.error("не видно элемента");
+        screenshot("avatarOpenPage");
+        log.error("не видно элемента");
     }
 
     public AvatarPage changeImg(int numberImg) {
+        $(AVATAR_IMG).shouldBe(Condition.visible);
+        screenshot("avatarImages");
         List<SelenideElement> countImg = $$(AVATAR_IMG);
         for (int i = 0; i < countImg.size();) {
             countImg.get(numberImg).click();
             break;
         }
         $(MESSAGE_SUCCESS).shouldBe(Condition.visible);
+        screenshot("successfulMessageAfterUpdate");
         return this;
     }
 }

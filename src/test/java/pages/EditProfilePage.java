@@ -34,80 +34,97 @@ public class EditProfilePage extends BasePage {
     @Override
     void isPageOpen() {
         $(EDIT_MODAL).shouldBe(Condition.visible);
-       // log.error("не видно элемента");
+        screenshot("editPage");
+        log.error("не видно элемента");
     }
     public EditProfilePage editFirstName(Profile profile){
         $(EDIT_FIRST_NAME).clear();
         $(EDIT_FIRST_NAME).sendKeys(profile.getUserName());
+        screenshot("editFirstName");
         return this;
     }
     public EditProfilePage editSurname (Profile profile){
         $(EDIT_SURNAME).clear();
         $(EDIT_SURNAME).sendKeys(profile.getSurname());
+        screenshot("editSurname");
         return this;
     }
     public EditProfilePage editYearOfBirthday(Profile profile){
         $(EDIT_YEAR_OF_BIRTHDAY).click();
-        //log.error("не был совершен клик по элементу");
+        log.error("не был совершен клик по элементу");
         $(EDIT_YEAR_OF_BIRTHDAY).selectOptionContainingText(profile.getYearOfBirthday());
+        screenshot("editBirthday");
         return this;
     }
     public EditProfilePage editGender(Profile profile){
         $(EDIT_GENDER).click();
-        //log.error("не был совершен клик по элементу");
+        log.error("не был совершен клик по элементу");
         $(EDIT_GENDER).selectOptionContainingText(profile.getGender());
+        screenshot("editGender");
         return this;
     }
     public EditProfilePage editEmailAddress(Profile profile){
         $(EDIT_EMAIL).clear();
         $(EDIT_EMAIL).sendKeys(profile.getEmail());
+        screenshot("editEmail");
         return this;
     }
     public EditProfilePage setNewPassword(Profile profile){
         $(NEW_PASSWORD).sendKeys(profile.getNewPassword());
         $(CONFIRM_NEW_PASSWORD).sendKeys(profile.getNewPassword());
+        screenshot("editPassword");
         return this;
     }
     public EditProfilePage setTimeZone(Profile profile){
         $(SET_TIMEZONE).click();
-        //log.error("не был совершен клик по элементу");
+        log.error("не был совершен клик по элементу");
         $(SET_TIMEZONE).selectOption(profile.getTimezone());
+        screenshot("editTimezone");
         return this;
     }
     public EditProfilePage selectCountry (Profile profile){
         $(SELECT_COUNTRY).click();
-        //log.error("не был совершен клик по элементу");
+        log.error("не был совершен клик по элементу");
         $(SELECT_COUNTRY).selectOptionContainingText(profile.getCountry());
+        screenshot("editCountry");
         return this;
     }
     public EditProfilePage updateDetails(){
         $(UPDATE_DETAILS).click();
-        //log.error("не был совершен клик по элементу");
+        log.error("не был совершен клик по элементу");
         $(UPDATE_SUCCESS).shouldBe(Condition.visible);
-        //log.error("не видно элемента");
+        screenshot("updateMessageInProfile");
+        log.error("не видно элемента");
         return this;
     }
     public EditProfilePage validationPersonalInfoAfterUpdate(Profile profile){
         assertEquals($(EDIT_FIRST_NAME).getValue(), profile.getUserName());
         log.error("Не сошлись данные имени пользователя, что после обновления и того, что вводил юзер");
+        screenshot("validationFirstNameInProfilePage");
         assertEquals($(EDIT_SURNAME).getValue(), profile.getSurname());
+        screenshot("validationSurnameInProfilePage");
         log.error("Не сошлись фамилии пользователя, что после обновления и того, что вводил юзер");
         assertEquals($(EDIT_YEAR_OF_BIRTHDAY).getValue(), profile.getYearOfBirthday());
+        screenshot("validationYearBirthdayInProfilePage");
         log.error("Не сошлись даты рождения, что после обновления и того, что вводил юзер");
         assertEquals($(EDIT_GENDER).getText(), profile.getGender());
+        screenshot("validationGenderInProfilePage");
         log.error("Не сошлись гендеры, что после обновления и того, что вводил юзер");
         return this;
     }
     public EditProfilePage validationForEmail(Profile profile){
         assertEquals($(EDIT_EMAIL).getValue(), profile.getEmail());
+        screenshot("validationEmailInProfilePage");
         log.error("не сошелся почтовый ящик после изменения");
         return this;
     }
     public EditProfilePage validationTimezone(Profile profile){
         assertEquals($(SELECT_COUNTRY).getText(), profile.getCountry());
-        log.error("yt cjikfc");
+        screenshot("validationCountryInProfilePage");
+        log.error("не произошло изменение страны");
         assertEquals($(SET_TIMEZONE).getText(),profile.getTimezone());
-        log.error("dfjowejf");
+        screenshot("validationTimezoneInProfilePage");
+        log.error("не произошла смена таймзоны");
         return this;
     }
 

@@ -2,6 +2,7 @@ package tests;
 
 import models.Profile;
 import org.testng.annotations.Test;
+import tests.base.BaseTest;
 
 public class EditPasswordAndEmailTest extends BaseTest {
     @Test

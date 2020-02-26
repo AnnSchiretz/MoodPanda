@@ -34,9 +34,11 @@ public class RateHappinessPage extends BasePage {
     @Override
     void isPageOpen() {
         $(COMMENT).shouldBe(Condition.visible);
+        screenshot("rateHappinessPageOpen");
     }
     public RateHappinessPage updateMood(int moodRate, String  comment, String date){
         $(SLIDER).click();
+        screenshot("updateMoodSlider");
         int difference = moodRate - 5;
         Keys key;
         if(difference < 0){
@@ -46,11 +48,15 @@ public class RateHappinessPage extends BasePage {
         }
         for(int i = 0; i < Math.abs(difference); i++){
             $(SLIDER_MOVE).sendKeys(key);
+            screenshot("sliderMove");
         }
         $(COMMENT_TO_UPDATE_MOOD).sendKeys(comment);
+        screenshot("sendMessageToMood");
         $(CLICK_CALENDAR).click();
+        screenshot("chooseDate");
         $(By.xpath("//table[@class='ui-datepicker-calendar']//td/a[contains(text(),"+date+")]")).click();
         $(CLICK_UPDATE).click();
+        screenshot("updateMood");
         refresh();
         return this;
     }
@@ -61,6 +67,7 @@ public class RateHappinessPage extends BasePage {
             if(moods.get(i).getText().equals(comment)){
                 List<SelenideElement> delete = $$(DELETE_MOOD);
                 delete.get(i).click();
+                screenshot("clickDeleteMood");
                 refresh();
                 $$(By.xpath("//div[@class ='MoodPostItem media-content']")).find(Condition.text(comment)).shouldNotBe(Condition.visible);
                 log.error("не удалился муд");
@@ -76,8 +83,10 @@ public class RateHappinessPage extends BasePage {
                 delete.get(i).click();
                 List<SelenideElement> input = $$(INPUT_FOR_COMMENT);
                 input.get(i).sendKeys(message);
+                screenshot("addACommentToMood");
                 List<SelenideElement> button = $$(By.xpath(BUTTON_REPLY));
                 button.get(i).click();
+                screenshot("clickSendButton");
                 List<SelenideElement> commentArea = $$(COMMENT_FOR_MOOD);
                 assertEquals(commentArea.get(i + 1).getText(), message, "");
                 log.error("не совпал текст в сообщениях.");
@@ -90,12 +99,14 @@ public class RateHappinessPage extends BasePage {
         for (int i = 0; i < moods.size(); i++) {
             if (moods.get(i).getText().equals(comment)) {
                 List<SelenideElement> hug = $$(BUTTON_HUG);
+                String countBefore = hug.get(i).getText();
                 hug.get(i).click();
+                screenshot("clickHugForMood");
                 refresh();
                 String count = hug.get(i).getText();
-                System.out.println(count);
-                assertEquals(count.trim(), "Hug ( 1 )", "");
+                assertEquals(count.trim(), countBefore + 1, "");
                 log.error("не совпало число обнимашек");
+                screenshot("numberHugs");
             }
         }
         return this;

@@ -38,27 +38,32 @@ public class RegistrationPage extends BasePage {
     @Override
     void isPageOpen() {
         $(REGISTRATION_FORM).shouldBe(Condition.visible);
+        screenshot("registrationForm");
     }
     public RegistrationPage addPersonalInfo(Profile profile){
         $(ADD_FIRST_NAME).sendKeys(profile.getUserName());
         $(ADD_SURNAME_INITIAL).sendKeys(profile.getSurname());
         $(ADD_YEAR_OF_BIRTHDAY).click();
         $(ADD_YEAR_OF_BIRTHDAY).selectOptionContainingText(profile.getYearOfBirthday());
+        screenshot("addRegistrationInfo");
         return this;
     }
     public RegistrationPage addEmailAndPassword(Profile profile){
         $(ADD_EMAIL).sendKeys(profile.getEmail());
         $(ADD_PASSWORD).sendKeys(profile.getNewPassword());
         $(CONFIRM_PASSWORD).sendKeys(profile.getNewPassword());
+        screenshot("addRegistrationEmailAndPassword");
         return this;
     }
     public RegistrationPage confirmRegistration(){
         $(LOGIN).click();
         $(WELCOME_MOOD_UPDATE).shouldBe(Condition.visible);
+        screenshot("welcomeMood");
         return this;
     }
     public RegistrationPage updateWelcomeMood(int moodRate){
-        $(SLIDER).click();
+        $(SLIDER).shouldBe(Condition.visible).click();
+        screenshot("welcomeMood");
         int difference = moodRate - 5;
         Keys key;
         if(difference < 0){
@@ -69,6 +74,7 @@ public class RegistrationPage extends BasePage {
         for(int i = 0; i < Math.abs(difference); i++){
             $(SLIDER_MOVE).sendKeys(key);
             $(UPDATE_MOOD).click();
+            screenshot("updateWelcomeMood");
             break;
         }
         return this;
@@ -78,6 +84,7 @@ public class RegistrationPage extends BasePage {
         page.isPageOpen();
         List<SelenideElement> moods = $$(By.xpath(MOOD_AFTER_UPDATE));
         assertEquals(String.valueOf(moods.size()), "3");
+        screenshot("moodsAfterRegistration");
         return page;
     }
 }

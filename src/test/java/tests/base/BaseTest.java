@@ -1,21 +1,21 @@
-package tests;
+package tests.base;
 
 import com.codeborne.selenide.Configuration;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import steps.*;
 
-import static com.codeborne.selenide.Selenide.close;
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 
-
+@Listeners(TestListener.class)
 public class BaseTest {
-    LogInSteps logInSteps;
-    MoodSteps moodSteps;
-    EditProfileSteps editProfile;
-    AvatarSteps avatar;
-    RegistrationSteps registration;
+    public LogInSteps logInSteps;
+    public MoodSteps moodSteps;
+    public EditProfileSteps editProfile;
+    public AvatarSteps avatar;
+    public RegistrationSteps registration;
     @BeforeClass
     public void setupDriver(){
         Configuration.headless = true;

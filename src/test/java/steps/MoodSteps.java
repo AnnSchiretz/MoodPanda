@@ -26,12 +26,14 @@ public class MoodSteps {
         page.goToMyUpdates();
         return this;
     }
-    @Step()
+
+    @Step("add a comment in mood")
     public MoodSteps addAComment(String comment, String message){
         page.addAComment(comment, message);
         return this;
     }
-    @Step()
+
+    @Step("add hug for mood")
     public MoodSteps addHug(String comment){
         page.addHug(comment);
         return this;

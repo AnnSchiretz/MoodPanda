@@ -10,7 +10,8 @@ public class RegistrationSteps {
     public RegistrationSteps(){
         registration = new RegistrationPage();
     }
-    @Step("")
+
+    @Step("registration user in Mood Panda")
     public RegistrationSteps userRegistration(Profile profile){
         registration.openPage()
                 .addPersonalInfo(profile)
@@ -18,12 +19,14 @@ public class RegistrationSteps {
                 .confirmRegistration();
         return this;
     }
-    @Step()
+
+    @Step("update mood after registration")
     public RegistrationSteps updateMoodInTimeRegistration(int moodRate){
         registration.updateWelcomeMood(moodRate);
         return this;
     }
-    @Step
+
+    @Step("validation mood after registration ")
     public RegistrationSteps validation(){
         registration.validationMoodAfterRegistration();
         return this;

@@ -24,48 +24,51 @@ public class MyUpdatesPage extends BasePage {
     @Override
     void isPageOpen() {
         $(TOOLBAR).shouldBe(Condition.visible);
+        screenshot("notVisibleToolbar");
     }
     public RateHappinessPage clickUpdateMood(){
         $(UPDATE_MOOD).click();
         RateHappinessPage modal = new RateHappinessPage();
         modal.isPageOpen();
+        screenshot("notOpenRateHappinessPage");
         return modal;
-    }
-    public EditProfilePage clickEditProfile(){
-        $(ACCOUNT).click();
-        $(By.linkText("Edit profile")).click();
-        EditProfilePage editProfile = new EditProfilePage();
-        editProfile.isPageOpen();
-        return editProfile;
     }
     public RateHappinessPage goToMyMoods(){
         $(USER_STATISTIC).shouldBe(Condition.visible);
+        screenshot("goToMyMoods");
         RateHappinessPage modal = new RateHappinessPage();
         return modal;
     }
     public RateHappinessPage goToMyUpdates(){
         $(By.xpath(CLICK_MYUPDATES)).click();
         $(By.linkText("My updates")).click();
+        screenshot("goToMyUpdates");
         RateHappinessPage modal = new RateHappinessPage();
         return modal;
     }
     public RateHappinessPage addAComment(String comment, String message){
         goToMyUpdates();
+        screenshot("goToMyUpdates");
         RateHappinessPage modal = new RateHappinessPage();
         modal.addACommentToMyMood(comment, message);
+        screenshot("addACommentToMyMood");
         return modal;
     }
     public RateHappinessPage addHug(String comment){
         goToMyUpdates();
+        screenshot("goToMyUpdates");
         RateHappinessPage modal = new RateHappinessPage();
         modal.addHug(comment);
+        screenshot("addHug");
         return modal;
     }
     public LogInPage logout(){
         $(By.xpath(ACCOUNT)).click();
         $(By.linkText("Logout")).click();
+        screenshot("clickLogout");
         LogInPage login = new LogInPage();
         login.openPage();
+        screenshot("logInPage");
         return login;
     }
 }

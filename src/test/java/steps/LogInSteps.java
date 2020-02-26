@@ -17,14 +17,16 @@ public class LogInSteps  {
                 .logIn(email, password);
         return this;
     }
-    @Step("")
+
+    @Step("log out user")
     public LogInSteps logout(){
         MyUpdatesPage page = new MyUpdatesPage();
         page.logout();
         logInPage.openPage();
         return this;
     }
-    @Step("")
+
+    @Step("log in user with incorrect email and password")
     public LogInSteps loginWithIncorrectEmail(String email,String password){
         logInPage.openPage()
                 .sendIncorrectEmail(email,password);

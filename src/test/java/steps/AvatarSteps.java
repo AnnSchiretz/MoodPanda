@@ -10,7 +10,8 @@ public class AvatarSteps  {
     public AvatarSteps (){
     avatar = new AvatarPage();
     }
-    @Step()
+
+    @Step("change avatar in settings")
     public AvatarSteps changeAvatar(int imgNumber){
         avatar.openPage()
                 .changeImg(imgNumber);
